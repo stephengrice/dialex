@@ -1,8 +1,10 @@
-<p>We have some good choices here</p>
+<h1>Languages</h1>
+
+<p>We have some good choices here.</p>
 
 
 <ul>
   <% @languages.each do |language| %>
-    <li><%= link_to language.name, language %></li>
+    <li><%= link_to language.name.capitalize, language %></li>
   <% end %>
 </ul>
