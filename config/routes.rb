@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
   root 'home#index'
   
-  get '/lessons/:language', to: 'lessons#index', name: 'lessons_path'
+  resources :lessons, only: [:show]
+  resources :languages, only: [:index, :show]
   
   get '/login' => 'sessions#new', name: 'login_path'
   post '/login' => 'sessions#create'

@@ -12,4 +12,10 @@ class ApplicationController < ActionController::Base
           redirect_to login_path(next: request.fullpath)
       end
   end
+  
+  def not_found
+    llrender file: "public/404", status: 404
+  end
+  
+  helper_method :not_found
 end

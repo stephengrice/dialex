@@ -1,0 +1,6 @@
+<h1>Lessons for Language <%= @language.name.capitalize %></h1>
+
+
+<% @lessons.each do |lesson| %>
+  <p><%= link_to lesson.name, lesson %></p>
+<% end %>

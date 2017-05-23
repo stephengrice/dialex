@@ -6,8 +6,8 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-arabic = Language.create!(name: "Arabic")
-russian = Language.create!(name: "Russian")
+arabic = Language.create!(name: "arabic")
+russian = Language.create!(name: "russian")
 
 lessons = Lesson.create!([
   {name: "Basics", language: arabic},

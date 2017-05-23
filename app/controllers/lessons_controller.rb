@@ -1,5 +1,6 @@
 class LessonsController < ApplicationController
-  
-  def index
+  def show
+    @lesson = Lesson.find(params[:id])
+    @exercises = Exercise.where(lesson: @lesson)
   end
 end
