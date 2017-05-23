@@ -1,19 +1,15 @@
-<h1>Home - Rails Authentication Template</h1>
+<h1>Dialex</h1>
 
+<h2>Learn with Confidence, Speak with Ease</h2>
 
-<p>The following routes are available:</p>
+<% if current_user %>
+  <p>Welcome, <%= current_user.name %>. <%= link_to 'Logout', logout_path %></p>
+<% else %>
+  <p>Let's get started! <%= link_to 'Login', login_path %> or <%= link_to 'Register', register_path %></p>
+<% end %>
+
+<p>Pick a language:</p>
 <ul>
-   <li><%= link_to 'GET /login', login_path %></li>
-  <li>POST /login</li>
-  <li><%= link_to 'GET /logout', logout_path %></li>
- 
-  <li><%= link_to 'GET /register', register_path %></li>
-  <li>POST /users</li>
-</ul>
-
-
-<p>Helper methods:</p>
-<ul>
-  <li>current_user</li>
-  <li>authorize (use with before_action in controller)</li>
+  <li><a href="/lessons/arabic">Arabic</a></li>
+  <li>Russian</li>
 </ul>

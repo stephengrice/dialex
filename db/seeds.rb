@@ -5,3 +5,16 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+arabic = Language.create!(name: "Arabic")
+russian = Language.create!(name: "Russian")
+
+lessons = Lesson.create!([
+  {name: "Basics", language: arabic},
+  {name: "Basics", language: russian}
+  ])
+
+Exercise.create!([
+  {lesson: Lesson.first, original: "Hello", translation: "مرحبا"},
+  {lesson: Lesson.second, original: "Hello", translation: "Здравствуйте"}
+  ])

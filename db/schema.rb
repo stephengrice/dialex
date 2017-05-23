@@ -16,10 +16,11 @@ ActiveRecord::Schema.define(version: 20170523013034) do
   enable_extension "plpgsql"
 
   create_table "exercises", force: :cascade do |t|
+    t.string   "original"
+    t.string   "translation"
     t.integer  "lesson_id"
-    t.string   "type"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
     t.index ["lesson_id"], name: "index_exercises_on_lesson_id", using: :btree
   end
 
@@ -45,4 +46,6 @@ ActiveRecord::Schema.define(version: 20170523013034) do
     t.datetime "updated_at",      null: false
   end
 
+  add_foreign_key "exercises", "lessons"
+  add_foreign_key "lessons", "languages"
 end
