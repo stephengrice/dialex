@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>RailsAuthTemplate</title>
+    <title>Dialex</title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -9,6 +9,38 @@
   </head>
 
   <body>
+  <!-- navbar -->
+    <nav class="navbar navbar-inverse navbar-static-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/">Dialex</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li><%= link_to 'Home', root_path %></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+				<%if current_user %>
+                   <li><a>Welcome, <%= current_user.name %></a></li>
+                   <li><%= link_to 'Logout', logout_path %></li>
+				<%else %>
+                    <li><%= link_to 'Login', login_path %></li>
+                    <li><%= link_to 'Register', register_path %></li>
+				<% end %>
+			</ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+  <!-- /navbar -->
+  
+   <div class="container">
     <%= yield %>
+   </div>
   </body>
 </html>
