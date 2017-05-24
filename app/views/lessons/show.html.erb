@@ -24,9 +24,9 @@
 $('form.exercise-form').submit(function(e) {
   e.preventDefault();
   var formData = $(this).serializeArray();
-  var original = formData[0].value;
+  var translation = formData[0].value;
   var id = formData[1].value;
-  $.ajax({url: "/exercises/grade/" + id, method: 'GET', data: {input: original}}).done(function(result) {
+  $.ajax({url: "/exercises/grade/" + id, method: 'GET', data: {translation: translation}}).done(function(result) {
     console.log(result);
     var field = $("#exercise" + id + " input[type=text]").first().parent();
     field.removeClass("has-success");

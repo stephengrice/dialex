@@ -1,9 +1,16 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
+  original: testorig
+  translation: testtrans
   lesson: one
-  type: 
 
 two:
+  original: testorig
+  translation: testtrans
   lesson: two
-  type: 
+
+ru:
+  original: Hi
+  translation: Привет
+  lesson: ru

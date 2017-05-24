@@ -7,3 +7,7 @@ one:
 two:
   name: MyString
   language: two
+
+ru:
+  name: Basics
+  language: russian
