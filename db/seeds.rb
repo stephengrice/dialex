@@ -10,18 +10,31 @@ Exercise.destroy_all
 Lesson.destroy_all
 Language.destroy_all
 
-arabic = Language.create!(name: "arabic")
-russian = Language.create!(name: "russian")
+# Languages
+arabic = Language.create(name: "arabic")
+russian = Language.create(name: "russian")
 
-lessons = Lesson.create!([
-  {name: "Basics", language: arabic},
-  {name: "Basics", language: russian}
-  ])
+# Lessons
+ar_basics = Lesson.create({name: "Basics", language: arabic})
+ru_basics = Lesson.create({name: "Basics", language: russian})
+ru_alphabet = Lesson.create({name: "Alphabet", language: russian})
 
-Exercise.create!([
-  {lesson: Lesson.first, original: "Hello", translation: "مرحبا"},
-  {lesson: Lesson.first, original: "How are you?", translation: "كيف حالك؟"},
-  {lesson: Lesson.first, original: "What is your name?", translation: "ما اسمك؟"},
-  {lesson: Lesson.second, original: "Hello", translation: "Здравствуйте"},
-  {lesson: Lesson.second, original: "How are you?", translation: "Как дела?"}
+# Exercises
+Exercise.create([
+  {lesson: ar_basics, original: "Hello", translation: "مرحبا"},
+  {lesson: ar_basics, original: "How are you?", translation: "كيف حالك؟"},
+  {lesson: ar_basics, original: "What is your name?", translation: "ما اسمك؟"},
+  {lesson: ar_basics, original: "Goodbye", translation: "وداعا"},
+  
+  {lesson: ru_basics, original: "Hello", translation: "Здравствуйте"},
+  {lesson: ru_basics, original: "Hi", translation: "Привет"},
+  {lesson: ru_basics, original: "How are you?", translation: "Как дела?"},
+  {lesson: ru_basics, original: "What is your name?", translation: "Как вас зовут?"},
+  {lesson: ru_basics, original: "Nice to meet you", translation: "Очень приятно"},
+  {lesson: ru_basics, original: "Have a nice day", translation: "Хорошего дня"},
+  {lesson: ru_basics, original: "Bye", translation: "Пока"},
+  {lesson: ru_basics, original: "Goodbye", translation: "До свидания"},
+  
+  {lesson: ru_alphabet, original: "d", translation: "д"},
+  {lesson: ru_alphabet, original: "m", translation: "м"}
   ])
