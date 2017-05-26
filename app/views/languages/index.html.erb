@@ -1,10 +1,11 @@
+<%= link_to 'Home', root_path, class: 'btn btn-sm btn-primary' %>
+
 <h1>Languages</h1>
 
-<p>We have some good choices here.</p>
-
-
-<ul>
+<div>
   <% @languages.each do |language| %>
-    <li><%= link_to language.name.capitalize, language %></li>
+    <div class="language">
+      <%= link_to language.name.capitalize, language, class: 'btn btn-lg btn-default' %>
+    </div>
   <% end %>
-</ul>
+</div>

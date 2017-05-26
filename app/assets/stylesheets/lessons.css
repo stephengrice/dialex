@@ -1,0 +1,16 @@
+/* line 5, C:/Users/steph/OneDrive/Documents/Workspace/dialex3/app/assets/stylesheets/lessons.scss */
+.exercise-form {
+  text-align: center;
+  width: 70%;
+  margin: auto; }
+  /* line 9, C:/Users/steph/OneDrive/Documents/Workspace/dialex3/app/assets/stylesheets/lessons.scss */
+  .exercise-form .original {
+    float: left; }
+  /* line 12, C:/Users/steph/OneDrive/Documents/Workspace/dialex3/app/assets/stylesheets/lessons.scss */
+  .exercise-form .translation {
+    float: right; }
+  /* line 15, C:/Users/steph/OneDrive/Documents/Workspace/dialex3/app/assets/stylesheets/lessons.scss */
+  .exercise-form .bottom {
+    clear: both; }
+
+/*# sourceMappingURL=lessons.css.map */

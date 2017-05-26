@@ -1,4 +1,6 @@
-<h1>Lessons for Language <%= @language.name.capitalize %></h1>
+<%= link_to 'All Languages', languages_path, class: 'btn btn-sm btn-primary' %>
+
+<h1><%= @language.name.capitalize %> Lessons</h1>
 
 <ol>
   <% @lessons.each do |lesson| %>
