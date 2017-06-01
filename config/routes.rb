@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :lessons, only: [:show]
   resources :languages, only: [:index, :show]
   
+  get '/exercises/:id', to: 'exercises#index', as: 'exercises'
   get '/exercises/grade/:id', to: 'exercises#grade', as: 'grade'
   
   get '/login' => 'sessions#new', name: 'login_path'

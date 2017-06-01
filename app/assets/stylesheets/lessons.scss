@@ -2,17 +2,25 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.exercise-form {
+#widget-learn {
   text-align: center;
   width: 70%;
   margin: auto;
-  .original {
+  
+  .instructions {
+    
+  }
+  .prompt {
     float: left;
   }
-  .translation {
+  .user-input {
     float: right;
   }
   .bottom {
     clear: both;
+  }
+  
+  .complete {
+    display: none;
   }
 }

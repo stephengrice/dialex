@@ -1,4 +1,12 @@
 class ExercisesController < ApplicationController
+  
+  # Pass in lesson id to get the associated exercises
+  def index
+    @lesson_id = params[:id]
+    @exercises = Exercise.where(lesson_id: @lesson_id)
+    render json: @exercises.to_json
+  end
+  
   def grade
     @exercise = Exercise.find(params[:id])
     @translation = params[:translation]
@@ -9,4 +17,5 @@ class ExercisesController < ApplicationController
       render json: @result.to_json
     end
   end
+
 end

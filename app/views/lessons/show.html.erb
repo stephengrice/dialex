@@ -2,50 +2,74 @@
 
 <h1><%= @language.name.capitalize %> Lesson: <%= @lesson.name %></h1>
 
-<p>Translate the following:</p>
 
-<% @exercises.each do |e| %>
-  <form class="exercise-form" id="exercise<%= e.id %>">
-    <div class="original">
-      <%= e.original %>
-    </div>
-    
-    <div class="form-group translation">
-      <input name="translation" type="text" class="form-control" />
-    </div>
-    <input name="id" type="hidden" value="<%= e.id %>" />
-      
-    <div class="bottom">
-      <div>
-        <span class="result"></span>
-      </div>
-      <button class="btn btn-primary" type="submit">Check</button>
-    </div>
+<div id="widget-learn">
+ <form>
+  <div class="instructions">Translate the following:</div>
+  <div class="prompt">
+    <span>Original</span>
+  </div>
+  <div class="user-input">
+    <input type="text">
+  </div>
+  <div class="bottom">
+    <div id="exercise-feedback"></div>
+    <button class="btn btn-primary" type="submit">Check</button>
+  </div>
   </form>
-  <hr>
-<% end %>
-
+  <div class="complete">
+    <h2>Lesson Complete</h2>
+  </div>
+</div>
 
 <script>
-$('form.exercise-form').submit(function(e) {
-  e.preventDefault();
-  var formData = $(this).serializeArray();
-  var translation = formData[0].value;
-  var id = formData[1].value;
-  $.ajax({url: "/exercises/grade/" + id, method: 'GET', data: {translation: translation}}).done(function(result) {
-    var field = $("#exercise" + id + " input[type=text]").first().parent();
-    field.removeClass("has-success");
-    field.removeClass("has-error");
-    var mySpan = $("#exercise" + id + " .result").first();
-    console.log(mySpan);
+var exercises = <%= @exercises.to_json.html_safe %>;
+var currentExercise = 0;
+// Is the widget 'waiting' for user to submit?
+var waiting = true;
+fillWidget(exercises[currentExercise]);
 
-    if (result.correct) {
-      field.addClass("has-success");
-      mySpan.html("You are correct!");
-    } else {
-      field.addClass("has-error");
-      mySpan.html("Try again.");
-    }
-  });
+function fillWidget() {
+  exercise = exercises[currentExercise];
+  widget = $('#widget-learn');
+  widget.find('.prompt').html(exercise.original);
+  waiting = true;
+}
+function grade() {
+  userInput = $('#widget-learn .user-input').children().first().val();
+  if (userInput.toLowerCase() == exercises[currentExercise].translation.toLowerCase()) {
+    waiting = false;
+    // Display success
+    $('#exercise-feedback').html("Success");
+  } else {
+    waiting = true;
+    // Display failure
+    $('#exercise-feedback').html("Try again");
+  }
+}
+function nextExercise() {
+  currentExercise++;
+  // Check if we have any exercises left
+  if (currentExercise < exercises.length) {
+      $('#exercise-feedback').html('');
+    $('#widget-learn .user-input').children().first().val('');
+    fillWidget();
+  } else {
+    $('#widget-learn form').hide();
+    $('#widget-learn .complete').show();
+  }
+}
+$('#widget-learn form').submit(function(e) {
+  e.preventDefault();
+  if ($('#widget-learn .user-input').children().first().val().length < 1) {
+    return;
+  }
+  
+  console.log("submitted");
+  if (waiting) {
+    grade();
+  } else {
+    nextExercise();
+  }
 });
 </script>
