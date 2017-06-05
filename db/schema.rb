@@ -10,10 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170523013034) do
+ActiveRecord::Schema.define(version: 20170605221853) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "credits", force: :cascade do |t|
+    t.integer  "points"
+    t.integer  "user_id"
+    t.integer  "lesson_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["lesson_id"], name: "index_credits_on_lesson_id", using: :btree
+    t.index ["user_id"], name: "index_credits_on_user_id", using: :btree
+  end
 
   create_table "exercises", force: :cascade do |t|
     t.string   "original"
@@ -42,10 +52,13 @@ ActiveRecord::Schema.define(version: 20170523013034) do
     t.string   "name"
     t.string   "email"
     t.string   "password_digest"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.integer  "points",          default: 0, null: false
   end
 
+  add_foreign_key "credits", "lessons"
+  add_foreign_key "credits", "users"
   add_foreign_key "exercises", "lessons"
   add_foreign_key "lessons", "languages"
 end

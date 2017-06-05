@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   get '/exercises/:id', to: 'exercises#index', as: 'exercises'
   get '/exercises/grade/:id', to: 'exercises#grade', as: 'grade'
   
+  resources :credits, only: [:create]
+  
   get '/login' => 'sessions#new', name: 'login_path'
   post '/login' => 'sessions#create'
   get '/logout' => 'sessions#destroy'

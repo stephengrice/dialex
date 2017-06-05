@@ -25,6 +25,7 @@
     <% else %>
       <p>Excellent job. <%= link_to 'Login', login_path %> to save your progress!</p>
     <% end %>
+    <p><%= link_to 'Back', @language, class: 'btn btn-primary' %></p>
   </div>
 </div>
 
@@ -64,9 +65,8 @@ function nextExercise() {
     $('#widget-learn .user-input').children().first().val('');
     fillWidget();
   } else {
-    $('#widget-learn form').hide();
-    $('#widget-learn .complete').show();
-    $('#widget-learn .results_points').html(points);
+    // Attempt to submit points
+    trySubmitPoints(points);
   }
 }
 $('#widget-learn form').submit(function(e) {
@@ -81,4 +81,18 @@ $('#widget-learn form').submit(function(e) {
     nextExercise();
   }
 });
+  
+function displayResults() {
+  $('#widget-learn form').hide();
+  $('#widget-learn .complete').show();
+  $('#widget-learn .results_points').html(points);
+}
+  
+function trySubmitPoints(numPoints) {
+  $.ajax({url: "/credits/", method: 'POST', data: {lesson_id: <%= @lesson.id %>, points: numPoints}}).done(function(result) {
+    displayResults();
+  }).fail(function() {
+    displayResults();
+  });
+}
 </script>
